@@ -13,8 +13,10 @@ import javax.swing.JFrame;
  */
 public class InterfazApp extends JFrame{
 
-    PanelGrilla pnlGrilla;
-    Controlador ctrl;
+    private PanelGrilla pnlGrilla;
+    private PanelPistas pnlPistasColumnas;
+    private PanelPistas pnlPistasFilas;
+    private Controlador ctrl;
     
     public InterfazApp(Controlador ctrl){
     
@@ -29,11 +31,18 @@ public class InterfazApp extends JFrame{
     setLocationRelativeTo(null);
     
     pnlGrilla = new PanelGrilla(ctrl);
-    
     pnlGrilla.setBounds(120, 165, 215, 215);
     add(pnlGrilla);
     
     ctrl.conectar(pnlGrilla);
+    
+    pnlPistasColumnas = new PanelPistas(true,ctrl.getCols());
+    pnlPistasColumnas.setBounds(120, 65, 215, 100);
+    add(pnlPistasColumnas);
+    
+    pnlPistasFilas = new PanelPistas(false, ctrl.getRows());
+    pnlPistasFilas.setBounds(20, 165, 100, 215);
+    add(pnlPistasFilas);
     }
     
     /**

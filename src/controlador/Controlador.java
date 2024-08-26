@@ -35,6 +35,7 @@ public class Controlador {
                 //opcion correcta
             } else {
                 pnlGrilla.setText(x, y);
+                System.out.println("Incorrecto");
                 //opcion incorrecta, restar vida
             }
         } else {
@@ -43,9 +44,18 @@ public class Controlador {
                 //opcion correcta
             }else{
                 pnlGrilla.setIcon(x, y, imgBlock);
+                System.out.println("Incorrecto");
                 //opcion incorrecta, restar vida
             }
         }
+    }
+    
+    public String[][] getRows() {
+        return nono.getRows();
+    }
+
+    public String[][] getCols() {
+        return nono.getCols();
     }
 
 }

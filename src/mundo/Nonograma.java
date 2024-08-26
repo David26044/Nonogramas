@@ -19,8 +19,8 @@ public class Nonograma {
     private String nono[][];
 
     public Nonograma() {
-        rows = new String[5][];
-        cols = new String[10][];
+        cols = new String[5][];
+        rows = new String[10][];
         nono = new String[10][];
     }
 
@@ -49,12 +49,12 @@ public class Nonograma {
             for (int i = 0; i < 5; i++) // Lee pistas de las filas
             {
                 line = buffer.readLine();
-                rows[i] = line.split(" ");
+                cols[i] = line.split(" ");
             }
             for (int i = 0; i < 10; i++) // Lee pistas de las columnas
             {
                 line = buffer.readLine();
-                cols[i] = line.split(" ");
+                rows[i] = line.split(" ");
             }
             for (int i = 0; i < 10; i++) // Lee el nonograma
             {
