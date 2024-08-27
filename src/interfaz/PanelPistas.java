@@ -47,7 +47,9 @@ public class PanelPistas extends JPanel {
                 lblPistas[i][j].setHorizontalAlignment(JLabel.CENTER);
                 lblPistas[i][j].setVerticalAlignment(JLabel.CENTER);
                 lblPistas[i][j].setEnabled(true);
-                lblPistas[i][j].setText(pistas[i][j]);
+                if (!pistas[i][j].equals("0")) {
+                    lblPistas[i][j].setText(pistas[i][j]);
+                }
                 add(lblPistas[i][j]);
             }
         }
@@ -61,7 +63,9 @@ public class PanelPistas extends JPanel {
                 lblPistas[i][j].setHorizontalAlignment(JLabel.CENTER);
                 lblPistas[i][j].setVerticalAlignment(JLabel.CENTER);
                 lblPistas[i][j].setEnabled(true);
-                lblPistas[i][j].setText(pistas[i][j]);
+                if (!pistas[i][j].equals("0")) {
+                    lblPistas[i][j].setText(pistas[i][j]);
+                }
                 add(lblPistas[i][j]);
             }
         }
