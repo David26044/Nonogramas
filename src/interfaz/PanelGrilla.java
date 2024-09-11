@@ -1,14 +1,9 @@
 package interfaz;
 
-import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
+import java.awt.GridLayout;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import controlador.Controlador;
@@ -28,7 +23,7 @@ public class PanelGrilla extends JPanel {
     /**
      * Constructor
      */
-    public PanelGrilla(Controlador controlador) {
+    public PanelGrilla(Controlador controlador, PanelVidas pnlVidas) {
         // ..............................................( T, L, B, R ).............................................
         setBorder(new CompoundBorder(new EmptyBorder(0, 0, 0, 0), new TitledBorder("")));
         setLayout(new GridLayout(10, 10));
@@ -47,7 +42,7 @@ public class PanelGrilla extends JPanel {
                 lblMundo[i][j].setHorizontalAlignment(JLabel.CENTER);
                 lblMundo[i][j].setVerticalAlignment(JLabel.CENTER);
                 lblMundo[i][j].setEnabled(true);
-                lblMundo[i][j].addMouseListener(new LabelClicMouse(i, j, lblMundo[i][j], controlador, this));
+                lblMundo[i][j].addMouseListener(new LabelClicMouse(i, j, lblMundo[i][j], controlador, this, pnlVidas));
                 add(lblMundo[i][j]);
             }
         }
@@ -82,25 +77,45 @@ class LabelClicMouse extends MouseAdapter {
     private Controlador ctrl;
     private int x, y;
     private PanelGrilla pnlMundo;
+    private PanelVidas pnlVidas;
+    private ImageIcon imgBlock;
 
-    public LabelClicMouse(int x, int y, JLabel label, Controlador ctrl, PanelGrilla pnlMundo) {
+    public LabelClicMouse(int x, int y, JLabel label, Controlador ctrl, PanelGrilla pnlMundo, PanelVidas pnlVidas) {
         this.label = label;
         this.ctrl = ctrl;
         this.x = x;
         this.y = y;
-
+        imgBlock = new ImageIcon("data/Block.gif");
         this.pnlMundo = pnlMundo;
+        this.pnlVidas = pnlVidas;
     }
 
     public void mouseClicked(MouseEvent evento) {
         if (evento.isMetaDown()) {
-            System.out.println("Clic derecho en: (" + x + "," + y + ")");
-            ctrl.click(x, y, true);
+            if (ctrl.click(x, y, true)) {
+                label.setIcon(imgBlock);
+                if (ctrl.ganar()) {
+                    JOptionPane.showMessageDialog(null, "ganaste");
+                    System.exit(0);
+                }
+            } else {
+                pnlVidas.descontarVidas(ctrl.getVidas());
+                ctrl.restarVida();
+                label.setText("X");
+            }
         } else {
-            System.out.println("Click izquierdo en: (" + x + "," + y + ")");
-            ctrl.click(x, y, false);
-            //poner x en la celda
+            if (ctrl.click(x, y, false)) {
+                label.setText("X");
+                if (ctrl.ganar()) {
+                    JOptionPane.showMessageDialog(null, "ganaste");
+                    System.exit(0);
+                }
+            } else {
+                pnlVidas.descontarVidas(ctrl.getVidas());
+                ctrl.restarVida();
+                label.setIcon(imgBlock);
+
+            }
         }
     }
 }
-

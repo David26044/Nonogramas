@@ -16,6 +16,7 @@ public class InterfazApp extends JFrame{
     private PanelGrilla pnlGrilla;
     private PanelPistas pnlPistasColumnas;
     private PanelPistas pnlPistasFilas;
+    private PanelVidas pnlVidas;
     private Controlador ctrl;
     
     public InterfazApp(Controlador ctrl){
@@ -30,9 +31,17 @@ public class InterfazApp extends JFrame{
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     
-    pnlGrilla = new PanelGrilla(ctrl);
+    pnlVidas = new PanelVidas(ctrl);
+    pnlVidas.setBounds(10, 10, 320, 50);
+    add(pnlVidas);
+    
+    pnlGrilla = new PanelGrilla(ctrl, pnlVidas);
     pnlGrilla.setBounds(120, 165, 215, 215);
     add(pnlGrilla);
+    
+    pnlVidas = new PanelVidas(ctrl);
+    pnlVidas.setBounds(10, 10, 320, 50);
+    add(pnlVidas);
     
     ctrl.conectar(pnlGrilla);
     
@@ -45,10 +54,6 @@ public class InterfazApp extends JFrame{
     add(pnlPistasFilas);
     }
     
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         InterfazApp frmMain = new InterfazApp(new Controlador());
         frmMain.setVisible(true);

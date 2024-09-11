@@ -43,7 +43,7 @@ public class PanelPistas extends JPanel {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 5; j++) {
                 lblPistas[i][j] = new JLabel("");
-                lblPistas[i][j].setBorder(new CompoundBorder(new EmptyBorder(0, 0, 0, 0), new TitledBorder("")));
+                //lblPistas[i][j].setBorder(new CompoundBorder(new EmptyBorder(0, 0, 0, 0), new TitledBorder("")));
                 lblPistas[i][j].setHorizontalAlignment(JLabel.CENTER);
                 lblPistas[i][j].setVerticalAlignment(JLabel.CENTER);
                 lblPistas[i][j].setEnabled(true);
@@ -59,7 +59,7 @@ public class PanelPistas extends JPanel {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
                 lblPistas[i][j] = new JLabel("");
-                lblPistas[i][j].setBorder(new CompoundBorder(new EmptyBorder(0, 0, 0, 0), new TitledBorder("")));
+               // lblPistas[i][j].setBorder(new CompoundBorder(new EmptyBorder(0, 0, 0, 0), new TitledBorder("")));
                 lblPistas[i][j].setHorizontalAlignment(JLabel.CENTER);
                 lblPistas[i][j].setVerticalAlignment(JLabel.CENTER);
                 lblPistas[i][j].setEnabled(true);

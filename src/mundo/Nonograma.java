@@ -17,11 +17,15 @@ public class Nonograma {
 
     private String rows[][], cols[][];
     private String nono[][];
+    private int vidas;
+    private int contClicks;
 
     public Nonograma() {
         cols = new String[5][];
         rows = new String[10][];
         nono = new String[10][];
+        vidas = 3;
+        contClicks = 100;
     }
 
     public String[][] getRows() {
@@ -60,7 +64,6 @@ public class Nonograma {
             {
                 line = buffer.readLine();
                 nono[i] = line.split(" ");
-                System.out.println(nono[i][9]);
             }
             buffer.close();
         } catch (IOException e) {
@@ -70,6 +73,7 @@ public class Nonograma {
 
     public boolean verificarClicDerecho(int x, int y) {
         if (nono[x][y].equals("0")) {
+            contClicks--;
             return true;
         }
         return false;
@@ -77,8 +81,25 @@ public class Nonograma {
 
     public boolean verificarClicIzquierdo(int x, int y) {
         if (nono[x][y].equals("X")) {
+            contClicks--;
             return true;
         }
         return false;
     }
+    
+    public void restarVida(){
+        vidas--;
+    }
+    
+    public boolean ganar(){
+        if (contClicks==0) {
+            return true;
+        }
+        return false;
+    }
+    
+    public int getVidas(){
+        return vidas; 
+    }
+    
 }

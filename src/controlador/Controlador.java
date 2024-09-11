@@ -5,7 +5,6 @@
 package controlador;
 
 import interfaz.PanelGrilla;
-import javax.swing.ImageIcon;
 import mundo.Nonograma;
 
 /**
@@ -16,7 +15,6 @@ public class Controlador {
 
     private Nonograma nono;
     private PanelGrilla pnlGrilla;
-    private ImageIcon imgBlock;
 
     public Controlador() {
         nono = new Nonograma();
@@ -24,38 +22,44 @@ public class Controlador {
 
     public void conectar(PanelGrilla pnlGrilla) {
         nono.readNono("nonogramas/nono0.in");
-        imgBlock = new ImageIcon("data/Block.gif");
         this.pnlGrilla = pnlGrilla;
     }
 
-    public void click(int x, int y, boolean clic) {
+    public boolean click(int x, int y, boolean clic) {
         if (clic) {
             if (nono.verificarClicDerecho(x, y)) {
-                pnlGrilla.setIcon(x, y, imgBlock);
-                //opcion correcta
+                return true;
+
             } else {
-                pnlGrilla.setText(x, y);
-                System.out.println("Incorrecto");
-                //opcion incorrecta, restar vida
+                return false;
             }
         } else {
-            if(nono.verificarClicIzquierdo(x, y)){
-                pnlGrilla.setText(x, y);
-                //opcion correcta
-            }else{
-                pnlGrilla.setIcon(x, y, imgBlock);
-                System.out.println("Incorrecto");
-                //opcion incorrecta, restar vida
+            if (nono.verificarClicIzquierdo(x, y)) {
+                return true;
+            } else {
+                return false;
             }
         }
     }
-    
+
+    public void restarVida() {
+        nono.restarVida();
+    }
+
+    public int getVidas() {
+        return nono.getVidas();
+    }
+
     public String[][] getRows() {
         return nono.getRows();
     }
 
     public String[][] getCols() {
         return nono.getCols();
+    }
+
+    public boolean ganar() {
+        return nono.ganar();
     }
 
 }
